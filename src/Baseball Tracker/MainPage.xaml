@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="Baseball_Tracker.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Baseball_Tracker"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Margin="0,-10,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width ="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Grid.Column="1" Style="{StaticResource PageHeaderTextStyle}" Margin="0,0,775,40"/>
+            <TextBlock x:Name="pageVersion" Grid.Column="1" HorizontalAlignment="Left" Margin="0,117,0,0" TextWrapping="Wrap" Text="{StaticResource BuildString}" VerticalAlignment="Top" Width="530"/>
+            <TextBlock x:Name="outsValue" HorizontalAlignment="Left" Height="58" Margin="455,130,0,0" TextWrapping="Wrap" Text="Outs: 0" VerticalAlignment="Top" Width="418" FontSize="50" Grid.Column="1" Grid.RowSpan="2"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="40" Margin="122,201,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Balls" VerticalAlignment="Top" Width="76" FontSize="25"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="40" Margin="455,201,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Strikes" VerticalAlignment="Top" Width="76" FontSize="25"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="40" Margin="872,201,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Inning Score" VerticalAlignment="Top" Width="159" FontSize="25"/>
+            <TextBlock x:Name="ballsValue" Grid.Column="1" HorizontalAlignment="Left" Height="121" Margin="63,265,0,0" Grid.Row="1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="184" FontSize="55" TextAlignment="Center"/>
+            <TextBlock x:Name="strikesValue" Grid.Column="1" HorizontalAlignment="Left" Height="121" Margin="386,265,0,0" Grid.Row="1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="184" FontSize="55" TextAlignment="Center"/>
+            <TextBlock x:Name="inningValue" Grid.Column="1" HorizontalAlignment="Left" Height="121" Margin="807,265,0,0" Grid.Row="1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="184" FontSize="55" TextAlignment="Center"/>
+            <Button x:Name="ballAdd" Content="+1 Ball" Grid.Column="1" HorizontalAlignment="Left" Height="73" Margin="54,404,0,0" Grid.Row="1" VerticalAlignment="Top" Width="220" FontSize="30" Click="ballAdd_Click"/>
+            <Button x:Name="strikesMinus" Content="-1 Strike" Grid.Column="1" HorizontalAlignment="Left" Height="73" Margin="407,331,0,0" Grid.Row="1" VerticalAlignment="Top" Width="220" FontSize="30" Click="strikesMinus_Click"/>
+            <Button x:Name="strikesAdd" Content="+1 Strike" Grid.Column="1" HorizontalAlignment="Left" Height="73" Margin="407,404,0,0" Grid.Row="1" VerticalAlignment="Top" Width="220" FontSize="30" Click="strikesAdd_Click"/>
+            <Button x:Name="inningScoreMinus" Content="-1 Point" Grid.Column="1" HorizontalAlignment="Left" Height="73" Margin="836,331,0,0" Grid.Row="1" VerticalAlignment="Top" Width="220" FontSize="30" Click="inningScoreMinus_Click"/>
+            <Button x:Name="inningScoreAdd" Content="+1 Point" Grid.Column="1" HorizontalAlignment="Left" Height="73" Margin="836,404,0,0" Grid.Row="1" VerticalAlignment="Top" Width="220" FontSize="30" Click="inningScoreAdd_Click"/>
+        </Grid>
+
+        <Button x:Name="ballMinus" Content="-1 Ball" HorizontalAlignment="Left" Height="73" Margin="175,462,0,0" VerticalAlignment="Top" Width="220" FontSize="30" Click="ballMinus_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="58" Margin="579,0,0,0" TextWrapping="Wrap" Text="Inning Number:" VerticalAlignment="Top" Width="359" FontSize="50"/>
+        <TextBlock HorizontalAlignment="Left" Height="58" Margin="579,58,0,0" TextWrapping="Wrap" Text="Currently pitching:" VerticalAlignment="Top" Width="418" FontSize="50"/>
+        <TextBlock x:Name="inningNumber" HorizontalAlignment="Left" Height="58" Margin="1002,0,0,0" TextWrapping="Wrap" Text="&lt;00&gt;" VerticalAlignment="Top" Width="332" FontSize="50" RenderTransformOrigin="0.38,-2.694"/>
+        <TextBlock x:Name="currentlyPitching" HorizontalAlignment="Left" Height="58" Margin="1002,58,0,0" TextWrapping="Wrap" Text="&lt;home&gt;" VerticalAlignment="Top" Width="332" FontSize="50" RenderTransformOrigin="0.38,-2.694"/>
+        <TextBlock x:Name="homeScore" HorizontalAlignment="Left" Height="47" Margin="122,132,0,0" TextWrapping="Wrap" Text="Home Score: 0" VerticalAlignment="Top" Width="446" FontSize="40"/>
+        <TextBlock x:Name="awayScore" HorizontalAlignment="Left" Height="57" Margin="122,184,0,0" TextWrapping="Wrap" Text="Away Score: 0" VerticalAlignment="Top" Width="446" FontSize="40"/>
+    </Grid>
+
+
+    <Page.BottomAppBar>
+        <AppBar x:Name="appBar" Padding="10,0,10,0" IsOpen="True" IsSticky="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="RightPanel" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                    <!--<Button x:Name="Settings" Style="{StaticResource SettingsAppBarButtonStyle}" Tag="Settings" Click="Settings_Click" IsEnabled="False"/>-->
+                    <Button x:Name="StartGame" Style="{StaticResource StartResetAppBarButtonStyle}" Tag="Start" Click="StartGame_Click"/>
+                </StackPanel>
+                <StackPanel x:Name="CenterPanel" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                    <Button x:Name="BatterOut" Style="{StaticResource BatterOutAppBarButtonStyle}" Tag="Batter Out" Click="batterOut_Click"/>
+                    <Rectangle Height="50" Width="2" Fill="LightGray"/>
+                    <Button x:Name="ResetCount" Style="{StaticResource ResetCountAppBarButtonStyle}" Tag="Reset Count" Click="ResetCount_Click"/>
+                </StackPanel>
+                <StackPanel x:Name="LeftPanel" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left">
+                    <Button x:Name="GameValues" Style="{StaticResource EditValuesAppBarButtonStyle}" Tag="Edit Scores and Outs" Click="GameValues_Click"/>
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+</Page>

@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="Baseball_Tracker.GameValues"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Baseball_Tracker"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <TextBox x:Name="homeTeamBox" HorizontalAlignment="Left" Margin="600,103,0,0" TextWrapping="Wrap" Text="Home" VerticalAlignment="Top" Height="44" Width="388" FontSize="25"/>
+        <TextBlock x:Name="pageTitle" Text="Game Values" Style="{StaticResource PageHeaderTextStyle}" Margin="47,0,1014,693"/>
+        <TextBlock x:Name="homeLabel" HorizontalAlignment="Left" Height="58" Margin="129,103,0,0" TextWrapping="Wrap" Text="Home Team:" VerticalAlignment="Top" Width="418" FontSize="50"/>
+        <TextBlock x:Name="awayLabel" HorizontalAlignment="Left" Height="58" Margin="129,161,0,0" TextWrapping="Wrap" Text="Away Team:" VerticalAlignment="Top" Width="418" FontSize="50"/>
+        <TextBlock x:Name="outsLabel" HorizontalAlignment="Left" Height="58" Margin="129,219,0,0" TextWrapping="Wrap" Text="Current Outs:" VerticalAlignment="Top" Width="418" FontSize="50"/>
+        <TextBlock x:Name="homeScoreLabel" HorizontalAlignment="Left" Height="58" Margin="129,277,0,0" TextWrapping="Wrap" Text="Home Team Score:" VerticalAlignment="Top" Width="418" FontSize="50"/>
+        <TextBlock x:Name="awayScoreLabel" HorizontalAlignment="Left" Height="58" Margin="129,324,0,0" TextWrapping="Wrap" Text="Away Team Score:" VerticalAlignment="Top" Width="418" FontSize="50"/>
+        <TextBlock x:Name="awayScoreLabel_Copy" HorizontalAlignment="Left" Height="58" Margin="129,382,0,0" TextWrapping="Wrap" Text="Inning Number:" VerticalAlignment="Top" Width="418" FontSize="50"/>
+        <TextBox x:Name="awayTeamBox" HorizontalAlignment="Left" Margin="600,161,0,0" TextWrapping="Wrap" Text="Away" VerticalAlignment="Top" Height="44" Width="388" FontSize="25"/>
+        <TextBox x:Name="outsBox" HorizontalAlignment="Left" Margin="600,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="44" Width="388" FontSize="25"/>
+        <TextBox x:Name="homeScoreBox" HorizontalAlignment="Left" Margin="600,277,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="44" Width="388" FontSize="25"/>
+        <TextBox x:Name="awayScoreBox" HorizontalAlignment="Left" Margin="600,338,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="44" Width="388" FontSize="25"/>
+        <TextBox x:Name="inningBox" HorizontalAlignment="Left" Margin="600,396,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="44" Width="388" FontSize="25"/>
+        <ToggleSwitch x:Name="topBottomSwitch" Header="Top or Bottom of Inning" HorizontalAlignment="Left" Margin="129,445,0,0" VerticalAlignment="Top" OnContent="Top" OffContent="Bottom"/>
+
+    </Grid>
+
+    <Page.BottomAppBar>
+        <AppBar x:Name="appBar" Padding="10,0,10,0" IsOpen="True" IsSticky="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="CenterPanel" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                    <Button x:Name="SaveValues" Style="{StaticResource SaveValuesAppBarButtonStyle}" Tag="Batter Out" Click="SaveValues_Click"/>
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+</Page>
